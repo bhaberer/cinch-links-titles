@@ -1,10 +1,10 @@
 # Cinch::Plugins::LinksTitles
 
-[![Gem Version](https://badge.fury.io/rb/cinch-links-logger.png)](http://badge.fury.io/rb/cinch-links-logger)
-[![Dependency Status](https://gemnasium.com/bhaberer/cinch-links-logger.png)](https://gemnasium.com/bhaberer/cinch-links-logger)
-[![Build Status](https://travis-ci.org/bhaberer/cinch-links-logger.png?branch=master)](https://travis-ci.org/bhaberer/cinch-links-logger)
-[![Coverage Status](https://coveralls.io/repos/bhaberer/cinch-links-logger/badge.png?branch=master)](https://coveralls.io/r/bhaberer/cinch-links-logger?branch=master)
-[![Code Climate](https://codeclimate.com/github/bhaberer/cinch-links-logger.png)](https://codeclimate.com/github/bhaberer/cinch-links-logger)
+[![Gem Version](https://badge.fury.io/rb/cinch-links-titles.png)](http://badge.fury.io/rb/cinch-links-titles)
+[![Dependency Status](https://gemnasium.com/bhaberer/cinch-links-titles.png)](https://gemnasium.com/bhaberer/cinch-links-titles)
+[![Build Status](https://travis-ci.org/bhaberer/cinch-links-titles.png?branch=master)](https://travis-ci.org/bhaberer/cinch-links-titles)
+[![Coverage Status](https://coveralls.io/repos/bhaberer/cinch-links-titles/badge.png?branch=master)](https://coveralls.io/r/bhaberer/cinch-links-titles?branch=master)
+[![Code Climate](https://codeclimate.com/github/bhaberer/cinch-links-titles.png)](https://codeclimate.com/github/bhaberer/cinch-links-titles)
 
 Cinch Plugin for logging links and printing titles / stats for linked urls.
 
@@ -12,7 +12,7 @@ Cinch Plugin for logging links and printing titles / stats for linked urls.
 
 Add this line to your application's Gemfile:
 
-    gem 'cinch-links-logger'
+    gem 'cinch-links-titles'
 
 And then execute:
 
@@ -20,7 +20,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install cinch-links-logger
+    $ gem install cinch-links-titles
 
 ## Usage
 
