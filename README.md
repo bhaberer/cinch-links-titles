@@ -30,7 +30,6 @@ You will need to add the Plugin and config to your list first;
       configure do |c|
         c.plugins.plugins = [Cinch::Plugins::LinksLogger]
         c.plugins.options[Cinch::Plugins::LinksTumblr] = { :stats     => true,
-                                                           :titles    => true,
                                                            :filename  => 'yaml/links.yml',
                                                            :whitelist => nil,
                                                            :blacklist => nil }
@@ -38,8 +37,6 @@ You will need to add the Plugin and config to your list first;
     end
 
 The configuration variables are all optional, what's listed are their defaults
-
-:titles (boolean) - Setting this to true will print the URL's title to the channel.
 
 :stats (boolean) - Setting this to true will print the name of the user who first linked
                    the URL, if applicable.
