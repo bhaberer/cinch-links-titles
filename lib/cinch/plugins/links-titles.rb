@@ -9,18 +9,13 @@ module Cinch::Plugins
   # Plugin to print URL titles in the channel.
   class LinksTitles
     include Cinch::Plugin
+    attr_accessor :storage
 
     # Simple struct object for tracking Links.
-    class Link < Struct.new(:nick, :title, :count, :short_url, :time)
+    class Link < Struct.new(:nick, :title, :count, :short_url, :url, :time)
       def to_yaml
-        {
-          nick:       nick,
-          title:      title,
-          count:      count,
-          short_url:  short_url,
-          url:        url,
-          time:       time
-        }
+        { nick: nick, title: title, count: count, short_url:  short_url,
+          url: url, time: time }
       end
     end
 
@@ -31,7 +26,7 @@ module Cinch::Plugins
       @storage = CinchStorage.new(config[:filename] ||
                                   'yaml/links-titles.yaml')
       @storage.data[:history] ||= {}
-      @post_stats  = config[:stats].nil?  ? true : config[:stats]
+      @post_stats  = config[:stats].nil?  ? false : config[:stats]
     end
 
     def listen(m)
@@ -51,7 +46,7 @@ module Cinch::Plugins
       end
 
       # Don't save unless we found some urls to process
-      @storage.synched_save(@bot) if urls
+      @storage.synced_save(@bot) if urls
     end
 
     private
@@ -93,11 +88,13 @@ module Cinch::Plugins
     def post_stats(m, link)
       # Check to see if we should post stats and if it's been linked
       # more than once.
-      if @post_stats && link.count > 1
-        # No stats if this person was the first one to link it
-        unless link.nick == m.user.nick
-          m.reply "That was already linked by #{link.nick}
-                   #{link.time.ago.to_words}.", true
+      if config[:stats]
+        if link.count > 1
+          # No stats if this person was the first one to link it
+          unless link.nick == m.user.nick
+            m.reply "That was already linked by #{link.nick} " +
+                    "#{link.time.ago.to_words}.", true
+          end
         end
       end
     end
@@ -105,16 +102,16 @@ module Cinch::Plugins
     def whitelisted?(url)
       return true unless config[:whitelist]
       debug "Checking Whitelist! #{config[:whitelist]} url: #{url}"
-      return true if url.match(Regexp.new("https:?\/\/.*\.?#{config[:whitelist]
-        .join('|')}\."))
+      return true if url.match(
+        Regexp.new("https?:\/\/.*\.?#{config[:whitelist].join('|')}\."))
       false
     end
 
     def blacklisted?(url)
       return false unless config[:blacklist]
       debug "Checking Blacklist! #{config[:blacklist]} url: #{url}"
-      return true if url.match(Regexp.new("https:?\/\/.*\.?#{config[:blacklist]
-        .join('|')}\."))
+      return true if url.match(
+        Regexp.new("https?:\/\/.*\.?#{config[:blacklist].join('|')}\."))
       false
     end
   end
