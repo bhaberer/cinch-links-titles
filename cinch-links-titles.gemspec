@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'cinch/plugins/links-titles/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "cinch-links-titles"
+  spec.name          = 'cinch-links-titles'
   spec.version       = Cinch::Plugins::LinksTitles::VERSION
   spec.authors       = ['Brian Haberer']
   spec.email         = ['bhaberer@gmail.com']
