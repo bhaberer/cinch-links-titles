@@ -2,7 +2,7 @@
 require 'open-uri'
 require 'cinch'
 require 'cinch/toolbox'
-require 'cinch-storage'
+require 'cinch/storage'
 require 'time-lord'
 
 module Cinch::Plugins
@@ -23,7 +23,7 @@ module Cinch::Plugins
 
     def initialize(*args)
       super
-      @storage = CinchStorage.new(config[:filename] ||
+      @storage = Cinch::Storage.new(config[:filename] ||
                                   'yaml/links-titles.yaml')
       @storage.data[:history] ||= {}
       @post_stats  = config[:stats].nil?  ? false : config[:stats]
